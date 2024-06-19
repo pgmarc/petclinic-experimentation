@@ -8,31 +8,43 @@ import org.apache.maven.model.Developer;
 import org.apache.maven.model.Model;
 import org.apache.maven.model.io.xpp3.MavenXpp3Reader;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.samples.petclinic.model.Person;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-
+@RestController
+@RequestMapping("api/v1/metrics")
 public class DevelopersController {
     List<Developer> developers;
 
+    @Autowired
+    MonitorService monitorService;
 
-    public List<Developer> getDevelopers(){
-        if(developers==null)
+    public List<Developer> getDevelopers() {
+        if (developers == null)
             loadDevelopers();
-        return developers;        
+        return developers;
     }
 
-    private void loadDevelopers(){        
+    private void loadDevelopers() {
         MavenXpp3Reader reader = new MavenXpp3Reader();
         try {
             Model model = reader.read(new FileReader("pom.xml"));
-            Person p=null;
-            developers=model.getDevelopers();                                            
+            Person p = null;
+            developers = model.getDevelopers();
         } catch (IOException | XmlPullParserException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+
     }
 
+    @GetMapping
+    public ResponseEntity<Stats> getStatsForPetclinic() {
+        return ResponseEntity.ok().body(monitorService.getStats());
+    }
 
 }

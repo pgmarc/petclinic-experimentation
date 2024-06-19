@@ -96,6 +96,9 @@ INSERT INTO visits(id,pet_id,visit_date_time,description,vet_id) VALUES (6, 1, '
 INSERT INTO visits(id,pet_id,visit_date_time,description,vet_id) VALUES (7, 1, '2020-01-02 15:30', 'rabies shot', 1);
 INSERT INTO visits(id,pet_id,visit_date_time,description,vet_id) VALUES (8, 2, '2013-01-03 9:45', 'neutered', 2);
 INSERT INTO visits(id,pet_id,visit_date_time,description,vet_id) VALUES (9, 3, '2013-01-04 17:30', 'spayed', 3);
+INSERT INTO visits(id,pet_id,visit_date_time,description,vet_id) VALUES (10, 12, '2013-01-04 17:30', 'rabbies shot', 1);
+INSERT INTO visits(id,pet_id,visit_date_time,description,vet_id) VALUES (11, 13, '2013-01-04 17:30', 'spayed', 2);
+
 
 INSERT INTO consultations(id,title, is_clinic_comment,status,owner_id,pet_id,creation_date) VALUES (1, 'Consultation about vaccines', 0, 'ANSWERED', 1, 1, '2023-01-04 17:30');
 INSERT INTO consultations(id,title, is_clinic_comment,status,owner_id,pet_id,creation_date) VALUES (2, 'My dog gets really nervous', 0, 'PENDING', 1, 1, '2022-01-02 19:30');
