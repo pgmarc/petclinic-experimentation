@@ -59,7 +59,7 @@ public class SecurityConfiguration {
 
 			.authorizeHttpRequests(authorizeRequests ->	authorizeRequests
 			.requestMatchers("/resources/**", "/webjars/**", "/static/**", "/swagger-resources/**").permitAll()
-			.requestMatchers( "/api/v1/clinics","/", "/api/v1/metrics","/oups","/api/v1/auth/**","/v3/api-docs/**","/swagger-ui.html","/swagger-ui/**").permitAll()
+			.requestMatchers( "/api/v1/clinics","/", "/actuator/**",  "/api/v1/metrics","/oups","/api/v1/auth/**","/v3/api-docs/**","/swagger-ui.html","/swagger-ui/**").permitAll()
 			.requestMatchers("/api/v1/developers").permitAll()
 			.requestMatchers("/api/v1/plan").hasAuthority("OWNER")
 			.requestMatchers(AntPathRequestMatcher.antMatcher("/api/v1/users/**")).hasAuthority(ADMIN)

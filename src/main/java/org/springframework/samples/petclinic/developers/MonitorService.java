@@ -1,8 +1,9 @@
 package org.springframework.samples.petclinic.developers;
 
 import java.lang.management.ManagementFactory;
-import java.lang.management.OperatingSystemMXBean;
+import com.sun.management.OperatingSystemMXBean;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
@@ -20,21 +21,26 @@ public class MonitorService {
 
         String metricQuery = "SELECT SUM(DATA_LENGTH + INDEX_LENGTH) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'petclinic'";
 
+        Date date = new Date();
+        long milis = date.getTime();
         // bytes
-        long jvmMemory = Runtime.getRuntime().totalMemory();
-        long freeHeapMemory = Runtime.getRuntime().freeMemory();
+
+        long totalMemory = Runtime.getRuntime().totalMemory();
+        long freeMemory = Runtime.getRuntime().freeMemory();
+        long occupiedMemory = totalMemory - freeMemory;
+        System.out.println(totalMemory);
+        System.out.println(freeMemory);
+        System.out.println(occupiedMemory);
+        Memory memory = new Memory("bytes", totalMemory, occupiedMemory, milis);
+
         // Hibernate returns BigDecimal for Oracle by default
         Query q = em.createNativeQuery(metricQuery);
         BigDecimal result = ((BigDecimal) q.getSingleResult());
-        System.out.println(result.longValue());
+        long diskSize = result.longValue();
 
-        // Unsupported
-        OperatingSystemMXBean osBean = ManagementFactory.getOperatingSystemMXBean();
-        System.out.println(osBean.getArch());
-        System.out.println(osBean.getSystemLoadAverage());
-        // double cpuUsage = osBean.getArch() * 100;
+        OperatingSystemMXBean osBean = ManagementFactory.getPlatformMXBean(OperatingSystemMXBean.class);
 
-        return new Stats(jvmMemory, freeHeapMemory, result.longValue(), osBean.getSystemLoadAverage());
+        return new Stats(milis, memory, diskSize, osBean.getProcessCpuLoad());
 
     }
 
