@@ -28,9 +28,6 @@ public class MonitorService {
         long totalMemory = Runtime.getRuntime().totalMemory();
         long freeMemory = Runtime.getRuntime().freeMemory();
         long occupiedMemory = totalMemory - freeMemory;
-        System.out.println(totalMemory);
-        System.out.println(freeMemory);
-        System.out.println(occupiedMemory);
         Memory memory = new Memory("bytes", totalMemory, occupiedMemory, milis);
 
         // Hibernate returns BigDecimal for Oracle by default
