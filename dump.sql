@@ -250,7 +250,7 @@ CREATE TABLE `owners` (
 
 LOCK TABLES `owners` WRITE;
 /*!40000 ALTER TABLE `owners` DISABLE KEYS */;
-INSERT INTO `owners` VALUES (1,1,4,'110 W. Liberty St.','Sevilla','George','Franklin','608555103'),(1,2,5,'638 Cardinal Ave.','Sevilla','Betty','Davis','608555174'),(1,3,6,'2693 Commerce St.','Sevilla','Eduardo','Rodriquez','608558763'),(2,4,7,'563 Friendly St.','Sevilla','Harold','Davis','608555319'),(2,5,8,'2387 S. Fair Way','Sevilla','Peter','McTavish','608555765'),(2,6,9,'105 N. Lake St.','Badajoz','Jean','Coleman','608555264'),(3,7,10,'1450 Oak Blvd.','Badajoz','Jeff','Black','608555538'),(3,8,11,'345 Maple St.','Badajoz','Maria','Escobito','608557683'),(3,9,12,'2749 Blackhawk Trail','CÃ¡diz','David','Schroeder','685559435'),(1,10,13,'2335 Independence La.','CÃ¡diz','Carlos','Estaban','685555487');
+INSERT INTO `owners` VALUES (1,1,4,'110 W. Liberty St.','Sevilla','George','Franklin','608555103'),(1,2,5,'638 Cardinal Ave.','Sevilla','Betty','Davis','608555174'),(1,3,6,'2693 Commerce St.','Sevilla','Eduardo','Rodriquez','608558763'),(2,4,7,'563 Friendly St.','Sevilla','Harold','Davis','608555319'),(2,5,8,'2387 S. Fair Way','Sevilla','Peter','McTavish','608555765'),(2,6,9,'105 N. Lake St.','Badajoz','Jean','Coleman','608555264'),(3,7,10,'1450 Oak Blvd.','Badajoz','Jeff','Black','608555538'),(3,8,11,'345 Maple St.','Badajoz','Maria','Escobito','608557683'),(3,9,12,'2749 Blackhawk Trail','CÃ¡diz','David','Schroeder','685559435'),(3,10,13,'2335 Independence La.','CÃ¡diz','Carlos','Estaban','685555487');
 /*!40000 ALTER TABLE `owners` ENABLE KEYS */;
 UNLOCK TABLES;
 
