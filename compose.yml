@@ -1,0 +1,41 @@
+name: petclinic
+services:
+  spring:
+    image: petclinic/spring
+    build:
+      context: .
+      args:
+        - JAR_FILE=./target/spring-petclinic-psg2-2.2.0.2324.jar
+    depends_on:
+      mysql:
+        condition: service_started
+    ports:
+      - "8080:8080"
+    networks:
+      - petnet
+    environment:
+      - "SPRING_ACTIVE_PROFILES=prod"
+      - "SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/petclinic"
+      - "SPRING_JPA_HIBERNATE_DDL-AUTO=update"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 4GB
+        reservations:
+          cpus: "0.5"
+          memory: 4GB
+  mysql:
+    image: mysql:9
+    restart: always
+    ports:
+      - "3306:3306"
+    networks:
+      - petnet
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=petclinic
+      - MYSQL_PASSWORD=petclinic
+      - MYSQL_DATABASE=petclinic
+networks:
+  petnet:
